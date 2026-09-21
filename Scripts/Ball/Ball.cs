@@ -19,8 +19,8 @@ public partial class Ball : Node2D
     // Tuned in M1: how far scale/vertical offset shift between near (Z=0, at the
     // camera/plate) and far (Z=MaxZ, out at the mound).
     [Export] public float MaxZ = 400f;
-    [Export] public float NearScale = 1.4f;
-    [Export] public float FarScale = 0.5f;
+    [Export] public float NearScale = 0.9f;
+    [Export] public float FarScale = 0.45f;
     [Export] public float DepthYOffsetPixels = 105f;
     [Export] public float Gravity = -60f;
 
