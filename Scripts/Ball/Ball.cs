@@ -9,16 +9,19 @@ public enum BallFlightMode
 }
 
 /// <summary>
-/// Simulates ball flight on a virtual X/Y/Z axis (Z = depth away from the camera)
-/// and projects it onto the 2D screen each frame to fake perspective on a fixed camera.
+/// Simulates ball flight on a virtual X/Y/Z axis (Z = depth away from the camera,
+/// which sits at Z=0 — behind the batter/home plate, the classic Baseball-Stars
+/// "watch the pitch come at you" angle) and projects it onto the 2D screen each
+/// frame to fake perspective on a fixed camera.
 /// </summary>
 public partial class Ball : Node2D
 {
-    // Tuned in M1: how far scale/vertical offset shift between near (mound) and far (plate).
+    // Tuned in M1: how far scale/vertical offset shift between near (Z=0, at the
+    // camera/plate) and far (Z=MaxZ, out at the mound).
     [Export] public float MaxZ = 400f;
     [Export] public float NearScale = 1.4f;
     [Export] public float FarScale = 0.5f;
-    [Export] public float DepthYOffsetPixels = 340f;
+    [Export] public float DepthYOffsetPixels = 220f;
     [Export] public float Gravity = -60f;
 
     public BallFlightMode Mode = BallFlightMode.ToBatter;
@@ -59,7 +62,10 @@ public partial class Ball : Node2D
 
         UpdateProjection();
 
-        if (_simPosition.Z >= MaxZ)
+        // Deactivate once the ball exits the [0, MaxZ] depth range in either
+        // direction — a pitch travels MaxZ -> 0 (mound to plate), a batted ball
+        // (added later) travels 0 -> MaxZ (plate out into the outfield).
+        if (_simPosition.Z <= 0f || _simPosition.Z >= MaxZ)
         {
             _active = false;
         }
