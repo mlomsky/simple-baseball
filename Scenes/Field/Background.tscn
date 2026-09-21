@@ -31,4 +31,4 @@ polygon = PackedVector2Array(628, 610, 652, 610, 660, 624, 640, 638, 620, 624)
 
 [node name="MoundMarker" type="Polygon2D" parent="."]
 color = Color(0.78, 0.64, 0.45, 1)
-polygon = PackedVector2Array(640, 388, 656, 400, 640, 412, 624, 400)
+polygon = PackedVector2Array(640, 503, 656, 515, 640, 527, 624, 515)

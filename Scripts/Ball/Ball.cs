@@ -21,7 +21,7 @@ public partial class Ball : Node2D
     [Export] public float MaxZ = 400f;
     [Export] public float NearScale = 1.4f;
     [Export] public float FarScale = 0.5f;
-    [Export] public float DepthYOffsetPixels = 220f;
+    [Export] public float DepthYOffsetPixels = 105f;
     [Export] public float Gravity = -60f;
 
     public BallFlightMode Mode = BallFlightMode.ToBatter;
